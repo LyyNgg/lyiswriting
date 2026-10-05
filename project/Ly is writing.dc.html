@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&amp;family=DM+Sans:wght@400;500;700&amp;family=DM+Mono:wght@400;500&amp;family=Instrument+Serif:ital@0;1&amp;display=swap" rel="stylesheet"><style>body{margin:0;background:#0B1640;font-family:'DM Sans',system-ui,sans-serif;color:#FFF6F2}a{color:#FF7A2F;text-decoration:none}a:hover{color:#FFB8D1}::selection{background:#FF7A2F;color:#0B1640}@keyframes mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}@keyframes bob{0%,100%{transform:translateY(0) rotate(var(--r))}50%{transform:translateY(-12px) rotate(calc(var(--r) + 4deg))}}@keyframes pop{0%{transform:scale(1)}40%{transform:scale(1.35) rotate(-8deg)}100%{transform:scale(1)}}</style></helmet>
+<div style="min-height:100vh;background:#0B1640;overflow-x:hidden">
+
+<nav style="position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:18px 56px;background:rgba(11,22,64,.88);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,184,209,.14)">
+<div onClick="{{ goHome }}" style="display:flex;align-items:center;gap:10px;cursor:pointer;font:800 24px 'Bricolage Grotesque';letter-spacing:-.02em;transition:transform .2s" style-hover="transform:rotate(-2deg) scale(1.03)"><div style="width:30px;height:30px;border-radius:50%;background:#FF7A2F;display:flex;align-items:center;justify-content:center;font:800 16px 'Bricolage Grotesque';color:#0B1640">L</div>Ly is <span style="font:italic 400 28px 'Instrument Serif';color:#FFB8D1;margin-left:-4px">writing…</span></div>
+<div style="display:flex;align-items:center;gap:28px;font:500 15px 'DM Sans'">
+<span onClick="{{ goHome }}" style="cursor:pointer;color:#FFB8D1;transition:color .15s" style-hover="color:#FF7A2F">Essays</span>
+<span onClick="{{ goHome }}" style="cursor:pointer;color:#FFB8D1;transition:color .15s" style-hover="color:#FF7A2F">Teardowns</span>
+<span style="cursor:pointer;color:#FFB8D1;transition:color .15s" style-hover="color:#FF7A2F">About Ly</span>
+<span style="padding:10px 20px;border-radius:999px;background:#FFB8D1;color:#0B1640;font-weight:700;cursor:pointer;transition:all .2s" style-hover="background:#FF7A2F;transform:rotate(-3deg)">Subscribe ✦</span>
+</div>
+</nav>
+
+<sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+<header style="position:relative;padding:88px 56px 96px;max-width:1328px;margin:0 auto;box-sizing:border-box">
+<div style="position:absolute;right:40px;top:40px;width:340px;height:340px;border-radius:50%;background:#FF7A2F;opacity:.95"></div>
+<div style="position:absolute;right:20px;top:330px;width:110px;height:110px;border-radius:32px;background:#FFB8D1;transform:rotate(18deg)"></div>
+<div style="--r:-10deg;position:absolute;right:110px;top:110px;padding:14px 22px;background:#0B1640;color:#FFB8D1;border-radius:999px;font:700 16px 'DM Sans';animation:bob 5s ease-in-out infinite">✦ product sense</div>
+<div style="--r:8deg;position:absolute;right:60px;top:280px;padding:12px 20px;background:#FFF6F2;color:#0B1640;border-radius:14px;font:800 18px 'Bricolage Grotesque';animation:bob 6s ease-in-out infinite .8s">UX nerd :)</div>
+<div style="--r:-4deg;position:absolute;right:250px;top:30px;width:64px;height:64px;border-radius:50%;background:#0B1640;border:3px dashed #FFB8D1;display:flex;align-items:center;justify-content:center;font:800 22px 'Bricolage Grotesque';color:#FF7A2F;animation:bob 4.5s ease-in-out infinite .3s">?!</div>
+
+<h1 style="position:relative;z-index:2;margin:0;font:800 clamp(64px,9vw,128px)/.88 'Bricolage Grotesque';letter-spacing:-.05em;max-width:min(820px,62%)">Hey, this <span style="font-family: &quot;Instrument Serif&quot;; font-style: italic; font-weight: 400; font-size: 1.06em; color: rgb(255, 122, 47); letter-spacing: -0.02em;">is</span> <span style="color: rgb(255, 184, 209);">Ly</span></h1>
+<p style="position:relative;z-index:2;margin:30px 0 0;max-width:min(500px,60%);font:19px/1.55 'DM Sans';color:#FFB8D1;text-wrap:pretty">This is my little corner of the internet — a bit about who I am, and the things I love doing when I'm not working.</p>
+</header>
+
+<section style="max-width:1328px;margin:0 auto;padding:0 56px;box-sizing:border-box">
+<div onClick="{{ featured.open }}" style="display:grid;grid-template-columns:1.2fr 1fr;gap:48px;align-items:center;padding:28px;background:#16245E;border-radius:36px;cursor:pointer;transition:transform .3s,box-shadow .3s" style-hover="transform:translateY(-6px) rotate(-.5deg);box-shadow:14px 14px 0 #FF7A2F">
+<div style="position:relative;height:400px;border-radius:24px;background:repeating-linear-gradient(135deg,#22337a 0 12px,#1b2a6b 12px 24px);display:flex;align-items:center;justify-content:center;font:13px 'DM Mono';color:#FFB8D1">{{ featured.img }}<div style="position:absolute;left:-14px;top:22px;padding:8px 16px;background:#FFB8D1;color:#0B1640;border-radius:999px;font:800 14px 'Bricolage Grotesque';transform:rotate(-8deg)">Latest essay!</div></div>
+<div style="display:flex;flex-direction:column;gap:18px;padding-right:20px">
+<div style="font:500 13px 'DM Mono';color:#FF7A2F;letter-spacing:.1em;text-transform:uppercase">{{ featured.tag }} · {{ featured.mins }}</div>
+<h2 style="margin:0;font:800 54px/.98 'Bricolage Grotesque';letter-spacing:-.035em;text-wrap:balance">{{ featured.title }}</h2>
+<p style="margin:0;font:18px/1.55 'DM Sans';color:#FFB8D1;text-wrap:pretty">{{ featured.dek }}</p>
+<div style="display:flex;align-items:center;gap:14px;margin-top:6px"><span style="padding:12px 22px;background:#FF7A2F;color:#0B1640;border-radius:999px;font:700 15px 'DM Sans'">Read it →</span><span style="font:14px 'DM Mono';color:#FFB8D1">{{ featured.date }}</span></div>
+</div></div>
+</section>
+
+<section style="max-width:1328px;margin:0 auto;padding:96px 56px 40px;box-sizing:border-box">
+<div style="display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:36px">
+<h2 style="margin:0;font:800 56px/1 'Bricolage Grotesque';letter-spacing:-.035em">All the <span style="font:italic 400 60px 'Instrument Serif';color:#FFB8D1">writing</span></h2>
+<div style="display:flex;gap:8px;flex-wrap:wrap">
+<sc-for list="{{ chips }}" as="c" hint-placeholder-count="5">
+<span onClick="{{ c.pick }}" style="padding:9px 18px;border-radius:999px;border:2px solid #FFB8D1;background:{{ c.bg }};color:{{ c.fg }};font:600 14px 'DM Sans';cursor:pointer;transition:transform .15s" style-hover="transform:rotate(-4deg) scale(1.06)">{{ c.label }}</span>
+</sc-for>
+</div></div>
+<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:36px 32px">
+<sc-for list="{{ feed }}" as="p" hint-placeholder-count="3">
+<article onClick="{{ p.open }}" style="cursor:pointer;display:flex;flex-direction:column;gap:14px;transform:rotate({{ p.tilt }}deg);transition:transform .3s cubic-bezier(.3,1.6,.5,1)" style-hover="transform:rotate(0deg) translateY(-10px) scale(1.02)">
+<div style="position:relative;aspect-ratio:4/3;border-radius:24px;background:repeating-linear-gradient(135deg,#22337a 0 10px,#1b2a6b 10px 20px);display:flex;align-items:center;justify-content:center;font:12px 'DM Mono';color:#FFB8D1;text-align:center;padding:20px;box-sizing:border-box">{{ p.img }}<div style="position:absolute;right:16px;top:-12px;padding:6px 14px;background:{{ p.stickerBg }};color:#0B1640;border-radius:999px;font:700 13px 'DM Sans';transform:rotate(6deg)">{{ p.tag }}</div></div>
+<h3 style="margin:4px 4px 0;font:700 27px/1.1 'Bricolage Grotesque';letter-spacing:-.02em;text-wrap:balance">{{ p.title }}</h3>
+<p style="margin:0 4px;font:16px/1.5 'DM Sans';color:#FFB8D1;text-wrap:pretty">{{ p.dek }}</p>
+<div style="margin:0 4px;font:13px 'DM Mono';color:#FF7A2F">{{ p.date }} · {{ p.mins }}</div>
+</article>
+</sc-for>
+</div>
+</section>
+</sc-if>
+
+<sc-if value="{{ isArticle }}" hint-placeholder-val="{{ false }}">
+<div style="position:fixed;left:0;right:0;bottom:0;height:6px;background:rgba(255,184,209,.15);z-index:30"><div style="height:100%;width:{{ progress }}%;background:#FF7A2F;transition:width .1s"></div></div>
+<header style="position:relative;max-width:900px;margin:0 auto;padding:64px 24px 44px;text-align:center">
+<div onClick="{{ goHome }}" style="display:inline-flex;margin-bottom:36px;padding:8px 16px;border:2px solid #FFB8D1;border-radius:999px;font:500 14px 'DM Mono';color:#FFB8D1;cursor:pointer;transition:all .2s" style-hover="background:#FFB8D1;color:#0B1640;transform:translateX(-6px)">← all writing</div>
+<div><span style="display:inline-block;padding:7px 16px;border-radius:999px;background:#FF7A2F;color:#0B1640;font:700 14px 'DM Sans';transform:rotate(-4deg)">{{ cur.tag }} · {{ cur.mins }}</span></div>
+<h1 style="margin:26px 0 22px;font:800 76px/.94 'Bricolage Grotesque';letter-spacing:-.045em;text-wrap:balance">{{ cur.title }}</h1>
+<p style="margin:0 auto;max-width:620px;font:21px/1.5 'DM Sans';color:#FFB8D1;text-wrap:pretty">{{ cur.dek }}</p>
+<div style="display:flex;justify-content:center;align-items:center;gap:12px;margin-top:30px"><div style="width:46px;height:46px;border-radius:50%;background:#FFB8D1;color:#0B1640;display:flex;align-items:center;justify-content:center;font:800 18px 'Bricolage Grotesque'">Ly</div><div style="text-align:left;font:15px 'DM Sans'"><div style="font-weight:700">Ly</div><div style="color:#FFB8D1;font-size:13px">{{ cur.date }}</div></div></div>
+</header>
+<div style="position:relative;max-width:1216px;margin:0 auto;padding:0 56px;box-sizing:border-box">
+<div style="height:480px;border-radius:36px;background:repeating-linear-gradient(135deg,#22337a 0 12px,#1b2a6b 12px 24px);display:flex;align-items:center;justify-content:center;font:13px 'DM Mono';color:#FFB8D1">{{ cur.img }}</div>
+<div style="--r:10deg;position:absolute;right:28px;bottom:-30px;width:120px;height:120px;border-radius:50%;background:#FFB8D1;color:#0B1640;display:flex;align-items:center;justify-content:center;text-align:center;font:800 17px/1 'Bricolage Grotesque';animation:bob 5s ease-in-out infinite">fresh<br>take!</div>
+</div>
+<div style="display:grid;grid-template-columns:120px minmax(0,660px) 220px;justify-content:center;gap:56px;max-width:1216px;margin:0 auto;padding:72px 56px 40px;box-sizing:border-box">
+<div style="position:sticky;top:110px;align-self:start;display:flex;flex-direction:column;align-items:center;gap:10px">
+<div onClick="{{ like }}" style="width:72px;height:72px;border-radius:50%;background:{{ likeBg }};color:#0B1640;display:flex;align-items:center;justify-content:center;font:800 28px 'Bricolage Grotesque';cursor:pointer;transition:transform .2s" style-hover="transform:scale(1.1) rotate(-8deg)">{{ likeIcon }}</div>
+<div style="font:700 15px 'DM Mono';color:#FFB8D1">{{ likeCount }}</div>
+<div style="font:11px 'DM Mono';color:#FFB8D1;opacity:.85;text-align:center">tap if this<br>clicked</div>
+</div>
+<article style="font:20px/1.72 'DM Sans';color:#FFF6F2">
+<p style="margin:0 0 26px"><span style="float:left;font:800 92px/.8 'Bricolage Grotesque';color:#FF7A2F;margin:8px 14px 0 0">{{ cur.dropcap }}</span>{{ cur.lead }}</p>
+<sc-for list="{{ cur.body }}" as="para" hint-placeholder-count="2"><p style="margin:0 0 26px;text-wrap:pretty">{{ para }}</p></sc-for>
+<blockquote style="margin:44px 0;padding:32px 36px;background:#FFB8D1;color:#0B1640;border-radius:28px;font:800 34px/1.12 'Bricolage Grotesque';letter-spacing:-.02em;transform:rotate(-1.2deg);transition:transform .3s" style-hover="transform:rotate(0deg) scale(1.02)">“{{ cur.quote }}”</blockquote>
+<sc-for list="{{ cur.body2 }}" as="para" hint-placeholder-count="1"><p style="margin:0 0 26px;text-wrap:pretty">{{ para }}</p></sc-for>
+<div style="position:relative;margin-top:44px;padding:32px 34px;border:2px dashed #FF7A2F;border-radius:28px">
+<div style="position:absolute;top:-16px;left:28px;padding:6px 14px;background:#FF7A2F;color:#0B1640;border-radius:999px;font:800 14px 'Bricolage Grotesque';transform:rotate(-3deg)">TL;DR</div>
+<sc-for list="{{ cur.takeaways }}" as="t" hint-placeholder-count="3"><div style="display:flex;gap:14px;margin-top:12px;font:18px/1.5 'DM Sans'"><span style="flex:none;width:12px;height:12px;margin-top:9px;border-radius:50%;background:#FFB8D1"></span><span>{{ t }}</span></div></sc-for>
+</div>
+</article>
+<div style="position:sticky;top:110px;align-self:start;display:flex;flex-direction:column;gap:14px">
+<div style="font:500 11px 'DM Mono';color:#FF7A2F;letter-spacing:.12em">IN THIS ESSAY</div>
+<sc-for list="{{ cur.toc }}" as="h" hint-placeholder-count="3"><div style="font:15px/1.35 'DM Sans';color:#FFB8D1">{{ h }}</div></sc-for>
+</div>
+</div>
+<section style="max-width:1216px;margin:0 auto;padding:40px 56px 24px;box-sizing:border-box">
+<h2 style="margin:0 0 28px;font:800 40px 'Bricolage Grotesque';letter-spacing:-.03em">Read <span style="font:italic 400 44px 'Instrument Serif';color:#FFB8D1">next</span></h2>
+<div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px">
+<sc-for list="{{ nextPosts }}" as="p" hint-placeholder-count="2">
+<div onClick="{{ p.open }}" style="display:flex;gap:22px;align-items:center;padding:18px;background:#16245E;border-radius:28px;cursor:pointer;transition:transform .25s,box-shadow .25s" style-hover="transform:translateY(-6px) rotate(-1deg);box-shadow:10px 10px 0 #FFB8D1">
+<div style="flex:none;width:150px;height:120px;border-radius:18px;background:repeating-linear-gradient(135deg,#22337a 0 10px,#1b2a6b 10px 20px)"></div>
+<div style="display:flex;flex-direction:column;gap:8px"><div style="font:12px 'DM Mono';color:#FF7A2F">{{ p.tag }} · {{ p.mins }}</div><div style="font:700 23px/1.12 'Bricolage Grotesque';letter-spacing:-.02em">{{ p.title }}</div></div>
+</div>
+</sc-for>
+</div>
+</section>
+</sc-if>
+
+<section style="max-width:1328px;margin:0 auto;padding:72px 56px 40px;box-sizing:border-box">
+<div style="position:relative;overflow:hidden;display:flex;align-items:center;gap:40px;flex-wrap:wrap;padding:52px 56px;background:#FF7A2F;color:#0B1640;border-radius:40px">
+<div style="position:absolute;right:-60px;bottom:-90px;width:260px;height:260px;border-radius:50%;background:#FFB8D1"></div>
+<div style="position:relative;flex:1;min-width:300px"><div style="font:800 52px/.98 'Bricolage Grotesque';letter-spacing:-.04em">One essay, every other Sunday.</div><div style="margin-top:12px;font:18px/1.5 'DM Sans'">No growth hacks. Just product thinking, in your inbox.</div></div>
+<sc-if value="{{ notSubscribed }}" hint-placeholder-val="{{ true }}">
+<div style="position:relative;display:flex;gap:8px"><input placeholder="you@email.com" value="{{ email }}" onChange="{{ setEmail }}" style="width:280px;padding:17px 22px;border:none;border-radius:999px;background:#FFF6F2;font:16px 'DM Sans';color:#0B1640;outline:none"><div onClick="{{ subscribe }}" style="padding:17px 28px;background:#0B1640;color:#FFB8D1;border-radius:999px;font:700 16px 'DM Sans';cursor:pointer;transition:transform .2s" style-hover="transform:rotate(-4deg) scale(1.05)">Count me in</div></div>
+</sc-if>
+<sc-if value="{{ subscribed }}" hint-placeholder-val="{{ false }}">
+<div style="position:relative;padding:18px 28px;background:#0B1640;color:#FFB8D1;border-radius:999px;font:800 20px 'Bricolage Grotesque';transform:rotate(-3deg)">You're in ✦ see you Sunday</div>
+</sc-if>
+</div>
+</section>
+<footer style="max-width:1328px;margin:0 auto;padding:28px 56px 56px;box-sizing:border-box;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;font:14px 'DM Mono';color:#FFB8D1">
+<div>© 2026 Ly is writing</div>
+<div style="display:flex;gap:24px"><span>RSS</span><span>LinkedIn</span><span>Read.cv</span></div>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const POSTS = [
+  {"id":"grab","tag":"Product sense","title":"From ride-sharing royalty to humble pedestrian","dek":"How Grab in Ho Chi Minh City and ride apps in Germany are built for completely different lifestyles.","date":"Oct 5, 2026","mins":"6 min","img":"photo — HCMC traffic vs. a German tram stop","lead":"iving in the chaotic beauty of Ho Chi Minh City, I was glued to Grab, Be, and Gojek every single day. It was not just about convenience. It was a lifestyle. Too lazy to decide what to eat? Order it. Want to cook something fancy but cannot be bothered with the 15 ingredients? Order it. A lazy morning meant booking a Grab with my monthly subscription, and suddenly everything felt less effortful, less stressful.","body":["And if you have ever lived in HCMC, you know the traffic situation. Morning rush? Nightmare. After work? Absolute chaos. No joke. 🙂","But then I moved to Germany at the end of 2023.","And the habit completely flipped on its head. Living in a small city, surrounded by my lovely uni friends, I somehow forgot that similar apps even exist here. Suddenly, I was learning the ancient art of planning ahead and using public transport like a responsible adult. Wild concept.","In Germany, I believe most people do not casually book a ride because they are feeling a bit lazy. You check the bus schedule. You memorize tram routes. You might even, brace yourself, walk. And for the rest of the team, they probably have cars. I went from ride-sharing royalty to a humble pedestrian, getting a few layers in winter because it is super cold here and I actually have to go outside now.","And food delivery? Forget the endless options I had back home. I know the comparison is a bit unfair, as my homeland is well known for its cuisine, but I really do miss having my 1 AM cravings solved in 20 minutes. Now I actually have to cook everyday, which made me realize I might be qualified for MasterChef. The audacity. Hopefully not everyone is like me, so we can still contribute to economic growth in some way.","Sarcasm aside, it has been a real adjustment. My whole rhythm changed. Less spontaneous, more planned. Less \"let us grab a ride real quick\" more \"the next train is in 12 minutes, better hurry.\" Germany taught me a kind of discipline I did not ask for, but at least the trains are sometimes on time. Still good.","Now let us talk about how these apps differ here compared to Vietnam.","Honestly, the whole vibe is just different. In Vietnam, Grab and its competitors are considered super apps with all-in-one life solutions: rides, food, groceries, insurance, and more. It was not just an app but more was part of daily life as they aim for. In Germany, Uber exists, but it feels more like something you use occasionally rather than your daily go-to. Or at least, I know no one who actually uses it daily.","Another big difference is availability. Back home, rides were everywhere. You opened the app and a driver appeared almost instantly. In Germany, you open the app, wait a bit, check the price twice, and then seriously reconsider whether you really need that ride or if walking builds character. Spoiler: it always does.","Food delivery follows the same pattern. In Vietnam, the choices felt endless: local spots, street vendors, \"Hu Tieu night\" that somehow stayed open until 4 AM. In Germany, the selection feels more limited and practical, but I cannot complain. Options are still available, but they do not tempt you in the same way.","At the end of the day, it is not about which system is better. They are designed for completely different lifestyles. Vietnam is built for speed, flexibility, and convenience in chaos. Germany is built for predictability, structure, and planning. One lets you live on impulse. The other quietly teaches you patience, whether you asked for it or not.","And somewhere between missing my Grab subscription and memorizing Deutsch Bahn schedules, I am slowly learning how to live in both worlds."],"quote":"One lets you live on impulse. The other quietly teaches you patience, whether you asked for it or not.","body2":["Another thing I started noticing here in Germany, and maybe Europe in general after a few trips, is that a large number of people already have a driver's license. Because of that, these apps adapt differently. Instead of focusing only on rides, they add features like car rental or pick-up services. In that sense, it makes a lot of sense. The market is different, so the product has to be different too.","You are not relying on a driver to take you from point A to point B. You are trusted with the car itself. That alone changes the whole relationship between the user and the platform. It shifts from convenience on demand to temporary ownership (my professor said that), even if just for an hour or two.","At the same time, this is where things get tricky. How do you make sure it works properly? How do you manage safety, responsibility, and risk when it is not a traditional car rental setup? There is no counter, no long contract, no face-to-face handover. Just an app, a location, scan of your driver’s license and a lot of trust. Making that system reliable is not just a design problem but I feel like it’s a math problem too. Risk calculation, insurance models, user behavior, damage prediction. All of that has to work quietly in the background.","So while ride-hailing apps in Vietnam solved the problem of moving fast in chaos, the European versions seem to be solving a different equation. Fewer impulsive rides, more planned mobility. Less about speed, more about trust. And honestly, seeing how the same idea evolves to fit such different lifestyles is probably the most interesting part of the comparison.","That’s enough for today, thank you."],"takeaways":["Vietnam is built for speed, flexibility, and convenience in chaos.","Germany is built for predictability, structure, and planning.","The market is different, so the product has to be different too."],"toc":["Life on Grab in HCMC","Moving to Germany","How the apps differ","Trusted with the car"]},
+  { id: 'onboard', tag: 'Teardown', title: 'The first 60 seconds: what Duolingo-style onboarding gets right', dek: 'Letting people do the thing before asking who they are is a product decision, not a UI trick.', date: 'Oct 2, 2026', mins: '9 min', img: 'screenshot collage — onboarding screens',
+    lead: 'he best onboarding flows I have used share one habit: they postpone the sign-up form until you already care about what is behind it.', body: ['Most apps ask for your email on screen one because the growth team needs an identifier. That is a reasonable business need, but it is the user paying for it with attention they have not yet decided to give.', 'When the first screen is a tiny win instead, the question changes from "should I make an account?" to "do I want to keep this progress?" The second question is much easier to say yes to.'],
+    quote: 'Earn the sign-up form. Don’t lead with it.', body2: ['The cost is real: you carry anonymous state, you lose some attribution, and engineering has to merge accounts later. I still think it is worth it for most consumer products.'],
+    takeaways: ['Show value before you ask for identity.', 'Turn sign-up into saving progress.', 'Budget engineering time for anonymous-to-account merges.'], toc: ['Screen one', 'The sign-up question', 'What it costs'] },
+  { id: 'empty', tag: 'Product sense', title: 'Empty states are your real homepage', dek: 'For a new user, the screen with nothing on it is the product.', date: 'Sep 24, 2026', mins: '6 min', img: 'screenshot — blank dashboard',
+    lead: 'very product team polishes the full dashboard, the one in the marketing screenshots. Almost no new user ever sees it.', body: ['What they see is the empty version: zero projects, zero teammates, a grey illustration and a button. That screen is doing the heavy lifting of explaining what the product is for.', 'A good empty state answers three things: what goes here, why I would want it, and the single fastest way to get there.'],
+    quote: 'Design the zero state first. Everything else is a later day.', body2: ['Templates, sample data and one obvious action beat a friendly illustration every time.'],
+    takeaways: ['New users live in empty states.', 'Answer what, why and how-fast.', 'Sample data beats illustrations.'], toc: ['The screenshot lie', 'Three questions', 'Patterns that work'] },
+  { id: 'settings', tag: 'UX', title: 'Every settings toggle is a decision you didn’t make', dek: 'Preferences pages tell you where a team couldn’t agree.', date: 'Sep 15, 2026', mins: '7 min', img: 'screenshot — long settings page',
+    lead: 'pen the settings page of any mature app and you can read its history of internal arguments.', body: ['Each toggle is usually a compromise: two people wanted different behaviour, so both shipped and the user got to pick. That feels respectful but mostly it moves the work to someone with less context.', 'Strong products pick a default, watch what happens, and only add the toggle when real users keep asking.'],
+    quote: 'A toggle is often a meeting that never ended.', body2: ['The fastest audit: for each setting, ask what percentage of people ever change it. Under one percent is a candidate for deletion.'],
+    takeaways: ['Settings reveal unmade decisions.', 'Ship opinionated defaults.', 'Audit toggles by usage.'], toc: ['Reading the history', 'Defaults over options', 'The 1% audit'] },
+  { id: 'search', tag: 'Teardown', title: 'Why command palettes took over web apps', dek: 'Cmd+K went from a power-user trick to a standard pattern in five years.', date: 'Sep 3, 2026', mins: '8 min', img: 'screenshot — command palette open',
+    lead: 'here was a moment when every app I opened suddenly had a little search box that also did everything.', body: ['Command palettes solve a real scaling problem: navigation menus can only hold so much before they become a maze.', 'They also teach. Every result shows its keyboard shortcut, so the palette quietly trains people to stop needing it.'],
+    quote: 'The best palette makes itself unnecessary.', body2: ['The risk is hiding everything behind a box nobody knows exists. The palette should be an accelerator, never the only door.'],
+    takeaways: ['Palettes scale where menus break.', 'Show shortcuts to teach them.', 'Never make it the only path.'], toc: ['Menus that broke', 'Teaching by doing', 'Where it goes wrong'] },
+  { id: 'friction', tag: 'Product sense', title: 'Good friction: when slowing people down helps', dek: 'Not every extra step is a conversion leak.', date: 'Aug 22, 2026', mins: '5 min', img: 'screenshot — confirm delete dialog',
+    lead: 'e treat friction as the enemy, but some of my favourite product moments are deliberately slow.', body: ['Typing the repository name before deleting it. A pause before sending money. A preview before publishing. Each step costs a second and saves a very bad afternoon.', 'The rule I use: add friction in proportion to how hard the action is to undo.'],
+    quote: 'Friction should scale with how hard it is to undo.', body2: ['Everything reversible should be instant. Everything permanent deserves a beat.'],
+    takeaways: ['Match friction to reversibility.', 'Make reversible actions instant.', 'Give permanent ones a pause.'], toc: ['Slow on purpose', 'The undo rule', 'Examples'] },
+  { id: 'notif', tag: 'Growth', title: 'Notifications are a trust budget', dek: 'Every ping spends a little. Most apps are overdrawn.', date: 'Aug 10, 2026', mins: '6 min', img: 'screenshot — lock screen full of pings',
+    lead: 'very push notification is a withdrawal from an account the user never told you the balance of.', body: ['Teams measure open rates per notification, which always look fine in isolation. What they rarely measure is the slow drift toward "turn off all".', 'Treat notifications like a budget: decide how many a week a person should get, then make each one compete for a slot.'],
+    quote: 'Measure the opt-outs, not just the opens.', body2: ['When notifications are scarce, they get read. That is the whole trick.'],
+    takeaways: ['Track opt-out rate as a core metric.', 'Set a weekly notification budget.', 'Scarcity makes pings valuable.'], toc: ['The hidden balance', 'Budgeting pings', 'What to cut'] }
+];
+const TILTS = [-2, 1.5, -1, 2, -1.5, 1];
+class Component extends DCLogic {
+  state = { view: 'home', cur: 0, cat: 'All', likes: {}, liked: {}, progress: 0, email: '', subscribed: false };
+  componentDidMount() {
+    this.onScroll = () => {
+      const h = document.documentElement.scrollHeight - window.innerHeight;
+      this.setState({ progress: h > 0 ? Math.min(100, (window.scrollY / h) * 100) : 0 });
+    };
+    window.addEventListener('scroll', this.onScroll, { passive: true });
+  }
+  componentWillUnmount() { window.removeEventListener('scroll', this.onScroll); }
+  open(i) { this.setState({ view: 'article', cur: i, progress: 0 }); window.scrollTo({ top: 0 }); }
+  renderVals() {
+    const s = this.state;
+    const mk = (p, i) => ({ ...p, open: () => this.open(i), tilt: TILTS[i % 6], stickerBg: i % 2 ? '#FFB8D1' : '#FF7A2F' });
+    const all = POSTS.map(mk);
+    const cats = ['All', 'Product sense', 'UX', 'Teardown', 'Growth'];
+    const cur = { ...POSTS[s.cur], dropcap: ({ grab: 'L', onboard: 'T', empty: 'E', settings: 'O', search: 'T', friction: 'W', notif: 'E' })[POSTS[s.cur].id] };
+    const id = cur.id;
+    const base = 12 + s.cur * 7;
+    const text = 'NEW ESSAY OUT ✦ PRODUCT SENSE ✦ UX TEARDOWNS ✦ WHY DOES THIS FEEL GOOD? ✦ WRITTEN BY LY ✦ ';
+    return {
+      isHome: s.view === 'home', isArticle: s.view === 'article',
+      goHome: () => { this.setState({ view: 'home' }); window.scrollTo({ top: 0 }); },
+      featured: all[0],
+      feed: all.slice(1).filter(p => s.cat === 'All' || p.tag === s.cat),
+      chips: cats.map(c => ({ label: c, pick: () => this.setState({ cat: c }), bg: s.cat === c ? '#FFB8D1' : 'transparent', fg: s.cat === c ? '#0B1640' : '#FFB8D1' })),
+      cur, progress: s.progress,
+      nextPosts: [1, 2].map(k => all[(s.cur + k) % all.length]),
+      likeCount: base + (s.likes[id] || 0),
+      likeBg: s.liked[id] ? '#FF7A2F' : '#FFB8D1',
+      likeIcon: s.liked[id] ? '✦' : '+',
+      like: () => this.setState(st => { const on = !st.liked[id]; return { liked: { ...st.liked, [id]: on }, likes: { ...st.likes, [id]: on ? 1 : 0 } }; }),
+      email: s.email, setEmail: e => this.setState({ email: e.target.value }),
+      subscribe: () => this.setState({ subscribed: true }),
+      subscribed: s.subscribed, notSubscribed: !s.subscribed,
+      marquee: React.createElement('div', { style: { display: 'inline-block', animation: 'mq 26s linear infinite' } }, text.repeat(6))
+    };
+  }
+}
+</script>
+</body>
+</html>
